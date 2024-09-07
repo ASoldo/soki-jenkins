@@ -1,0 +1,13 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:l="/lib/layout" xmlns:st="jelly:stapler">
+    <l:layout title="${displayName}">
+        <l:main-panel>
+            <h1>Name: ${it.name}</h1>
+            <form method="post" action="submit">
+                <label for="myInput">Enter something:</label>
+                <input type="text" name="myInput" id="myInput" />
+                <input type="submit" value="Submit" />
+            </form>
+        </l:main-panel>
+    </l:layout>
+</j:jelly>
