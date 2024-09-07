@@ -3,9 +3,24 @@
     <l:layout title="${displayName}">
         <l:main-panel>
             <h1>Name: ${it.name}</h1>
+            <h1>Number: ${it.numberValue}</h1>
+            <h1>Slider Value: ${it.sliderValue}</h1>
+
             <form method="post" action="submit">
+                <!-- Input for name -->
                 <label for="myInput">Enter something:</label>
                 <input type="text" name="myInput" id="myInput" />
+                <br />
+
+                <!-- Input for number -->
+                <label for="numberValue">Enter number:</label>
+                <input type="text" name="numberValue" id="numberValue" />
+                <br />
+
+                <label for="sliderValue">Set slider value:</label>
+                <input type="range" name="sliderValue" id="sliderValue" min="0" max="100" value="${it.sliderValue}" />
+                <br />
+
                 <input type="submit" value="Submit" />
             </form>
         </l:main-panel>
