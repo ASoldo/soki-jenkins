@@ -1,0 +1,16 @@
+<?jelly escape-by-default='true'?>
+<f:entry title="Enter Name" field="name">
+    <f:textbox />
+</f:entry>
+
+<f:entry title="Enter Number" field="numberValue">
+    <f:number />
+</f:entry>
+
+<f:entry title="Set Slider Value" field="sliderValue">
+    <f:slider />
+</f:entry>
+
+<f:entry title="Choose Option" field="goalType">
+    <f:select />
+</f:entry>

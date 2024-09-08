@@ -5,34 +5,28 @@
             <h1>Name: ${it.name}</h1>
             <h1>Number: ${it.numberValue}</h1>
             <h1>Slider Value: ${it.sliderValue}</h1>
+            <h1>Goal Type: ${it.goalType}</h1>
 
             <form method="post" action="submit">
-                <!-- Input for name with help -->
                 <f:entry title="Enter Name" field="name">
                     <f:textbox name="myInput" value="${it.name}" />
                 </f:entry>
-                <f:help href="/plugin/soki/help/help-name.html" />
 
-                <!-- Input for number -->
                 <f:entry title="Enter Number" field="numberValue">
                     <f:textbox type="number" name="numberValue" value="${it.numberValue}" />
                 </f:entry>
 
-                <!-- Slider input -->
                 <f:entry title="Set Slider Value" field="sliderValue">
                     <input type="range" name="sliderValue" id="sliderValue" min="0" max="100" value="${it.sliderValue}" />
                 </f:entry>
 
-                <!-- Dropdown select using f:select -->
                 <f:entry title="Choose Option" field="goalType">
-                    <select name="goalType">
-                        <option value="buildGoal">Build Goal</option>
-                        <option value="spotBugsGoal">SpotBugs goal</option>
-                    </select>
+                    <f:select name="goalType">
+                        <f:option value="buildGoal" selected="${it.goalType == 'buildGoal'}">Build Goal</f:option>
+                        <f:option value="spotBugsGoal" selected="${it.goalType == 'spotBugsGoal'}">SpotBugs Goal</f:option>
+                    </f:select>
                 </f:entry>
-                <br />
 
-                <!-- Submit button -->
                 <input type="submit" value="Submit" />
             </form>
         </l:main-panel>
