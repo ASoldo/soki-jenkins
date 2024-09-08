@@ -1,20 +1,22 @@
 package io.jenkins.plugins.soki;
 
-import hudson.Extension;
-import hudson.Launcher;
 import hudson.model.AbstractProject;
+import hudson.EnvVars;
+import hudson.Launcher;
+import hudson.Extension;
+import hudson.model.AbstractBuild;
 import hudson.model.BuildListener;
 import hudson.model.Run;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Builder;
+import hudson.util.ListBoxModel;
 import hudson.FilePath;
 import hudson.model.TaskListener;
 import jenkins.tasks.SimpleBuildStep;
 import org.kohsuke.stapler.DataBoundConstructor;
-import hudson.util.ListBoxModel;
 import org.jenkinsci.Symbol;
-
 import java.io.IOException;
+import java.util.Map;
 
 public class SokiPluginBuilder extends Builder implements SimpleBuildStep {
 
@@ -54,6 +56,18 @@ public class SokiPluginBuilder extends Builder implements SimpleBuildStep {
         listener.getLogger().println("Number: " + numberValue);
         listener.getLogger().println("Slider Value: " + sliderValue);
         listener.getLogger().println("Goal Type: " + goalType);
+
+        // Inject the variables
+        EnvVars env = run.getEnvironment(listener);
+        env.put("PLUGIN_NAME", name);
+        env.put("PLUGIN_NUMBER", String.valueOf(numberValue));
+        env.put("PLUGIN_SLIDER", String.valueOf(sliderValue));
+        env.put("PLUGIN_GOAL", goalType);
+
+        // Print environment variables for logging purposes
+        for (Map.Entry<String, String> entry : env.entrySet()) {
+            listener.getLogger().println(entry.getKey() + " = " + entry.getValue());
+        }
     }
 
     @Symbol("sokiPlugin")
