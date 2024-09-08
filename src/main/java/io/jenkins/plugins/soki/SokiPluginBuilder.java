@@ -70,7 +70,6 @@ public class SokiPluginBuilder extends Builder implements SimpleBuildStep {
             return "Run Soki Plugin";
         }
 
-        // Filling drop-down (optional)
         public ListBoxModel doFillGoalTypeItems() {
             ListBoxModel items = new ListBoxModel();
             items.add("Build Goal", "buildGoal");
