@@ -6,6 +6,7 @@ import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
 import hudson.model.RootAction;
 import hudson.Extension;
+import hudson.util.ListBoxModel;
 
 @Extension
 public class SokiPluginAction implements RootAction {
@@ -13,6 +14,24 @@ public class SokiPluginAction implements RootAction {
     private String name;
     private int numberValue;
     private int sliderValue;
+    private String goalType;
+
+    public String getGoalType() {
+        return goalType;
+    }
+
+    public void setGoalType(String goalType) {
+        this.goalType = goalType;
+    }
+
+    public ListBoxModel doFillGoalTypeItems() {
+        ListBoxModel items = new ListBoxModel();
+
+        items.add("Build Goal", "buildGoal");
+        items.add("SpotBugs goal", "spotBugsGoal");
+
+        return items;
+    }
 
     public SokiPluginAction() {
         this.name = "Default Name";

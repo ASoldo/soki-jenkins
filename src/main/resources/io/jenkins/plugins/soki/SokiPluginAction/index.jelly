@@ -1,5 +1,5 @@
 <?jelly escape-by-default='true'?>
-<j:jelly xmlns:j="jelly:core" xmlns:l="/lib/layout" xmlns:st="jelly:stapler">
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form" xmlns:l="/lib/layout">
     <l:layout title="${displayName}">
         <l:main-panel>
             <h1>Name: ${it.name}</h1>
@@ -7,20 +7,32 @@
             <h1>Slider Value: ${it.sliderValue}</h1>
 
             <form method="post" action="submit">
-                <!-- Input for name -->
-                <label for="myInput">Enter something:</label>
-                <input type="text" name="myInput" id="myInput" />
-                <br />
+                <!-- Input for name with help -->
+                <f:entry title="Enter Name" field="name">
+                    <f:textbox name="myInput" value="${it.name}" />
+                </f:entry>
+                <f:help href="/plugin/soki/help/help-name.html" />
 
                 <!-- Input for number -->
-                <label for="numberValue">Enter number:</label>
-                <input type="text" name="numberValue" id="numberValue" />
+                <f:entry title="Enter Number" field="numberValue">
+                    <f:textbox type="number" name="numberValue" value="${it.numberValue}" />
+                </f:entry>
+
+                <!-- Slider input -->
+                <f:entry title="Set Slider Value" field="sliderValue">
+                    <input type="range" name="sliderValue" id="sliderValue" min="0" max="100" value="${it.sliderValue}" />
+                </f:entry>
+
+                <!-- Dropdown select using f:select -->
+                <f:entry title="Choose Option" field="goalType">
+                    <select name="goalType">
+                        <option value="buildGoal">Build Goal</option>
+                        <option value="spotBugsGoal">SpotBugs goal</option>
+                    </select>
+                </f:entry>
                 <br />
 
-                <label for="sliderValue">Set slider value:</label>
-                <input type="range" name="sliderValue" id="sliderValue" min="0" max="100" value="${it.sliderValue}" />
-                <br />
-
+                <!-- Submit button -->
                 <input type="submit" value="Submit" />
             </form>
         </l:main-panel>
