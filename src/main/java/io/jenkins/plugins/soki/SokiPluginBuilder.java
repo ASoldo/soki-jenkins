@@ -1,5 +1,8 @@
 package io.jenkins.plugins.soki;
 
+import hudson.model.ParametersAction;
+import hudson.model.StringParameterValue;
+import hudson.model.Run;
 import hudson.model.AbstractProject;
 import hudson.EnvVars;
 import hudson.Launcher;
@@ -68,6 +71,8 @@ public class SokiPluginBuilder extends Builder implements SimpleBuildStep {
         for (Map.Entry<String, String> entry : env.entrySet()) {
             listener.getLogger().println(entry.getKey() + " = " + entry.getValue());
         }
+
+        run.addAction(new ParametersAction(new StringParameterValue("PLUGIN_NAME", name), new StringParameterValue("PLUGIN_NUMBER", String.valueOf(numberValue))));
     }
 
     @Symbol("sokiPlugin")
